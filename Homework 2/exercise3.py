@@ -40,7 +40,7 @@ def compute_root(initials):
     plt.figure()
     for i in range(1, 10):
         for optimizer_name, interval, additional_params in zip(
-            result.keys(), [initials], [{"fprime": df_dx}, None, None]
+            result.keys(), initials, [{"fprime": df_dx}, None, None]
         ):
             args = {"rtol": 1e-6, "full_output": True, "disp": False}
             args["maxiter"] = i
@@ -115,8 +115,8 @@ def compute_implied_volatility(df, S, T, r):
 
 def main():
 
-    compute_root((0,), (0, 1), (0, 1))
-    compute_root((2,), (2, 3), (2, 3))
+    compute_root([(0,), (0, 1), (0, 1)])
+    compute_root([(2,), (2, 3), (2, 3)])
 
     ### Part 2
     # read data previously downloaded
@@ -131,3 +131,7 @@ def main():
     # stock price at the time when the data was downloaded
     S = 148.8006
     compute_implied_volatility(df, S, r, T)
+
+
+if __name__ == "__main__":
+    main()
